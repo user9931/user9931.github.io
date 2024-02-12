@@ -1,5 +1,55 @@
 <html>
-  <h2>Заметки</h2>
+  <head>
+    <title></title>
+  </head>
+  <style>
+    #container {
+      margin-top: 2%;
+    }
+    body {
+      background-color: #000;
+      color: #fff;
+    }
+#container {
+  margin-left: 20%; /* Отступ слева 30% */
+}
+
+@media screen and (max-width: 500px) {
+  #container {
+    margin-left: 10%; /* Отступ слева 10% при ширине экрана меньше 500 пикселей */
+  }
+}
+
+@media screen and (max-width: 320px) {
+  #container {
+    margin-left: 2%;
+  }
+}
+  </style>
+
+  <body>
+    <div id="container">
+      <div id="content"></div>
+    </div>
+  </body>
+
+  <script src="markdown_parser.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if( /Android|iPhone|iPad/i.test(navigator.userAgent) ) {
+        document.querySelector("#container").style.marginLeft = "3%";
+}
+      let markdown = "Hello";
+      var parsedMD = parseMarkdown(markdown);
+      console.log(parsedMD);
+      console.log("hello");
+      fetch("index.md")
+        .then((response) => response.text())
+        .then((text) => {
+          htmldata = parseMarkdown(text);
+          console.log(htmldata);
+          document.querySelector("#container").innerHTML = htmldata;
+        });
+    });
+  </script>
 </html>
-
-
