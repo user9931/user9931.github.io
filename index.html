@@ -35,6 +35,17 @@
 
   <script src="markdown_parser.js"></script>
   <script>
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+        console.log('Service Worker registered with scope:', registration.scope);
+      }, function(error) {
+        console.log('Service Worker registration failed:', error);
+      });
+    });
+  }
+
     document.addEventListener("DOMContentLoaded", function () {
       if( /Android|iPhone|iPad/i.test(navigator.userAgent) ) {
         document.querySelector("#container").style.marginLeft = "3%";
@@ -51,5 +62,7 @@
           document.querySelector("#container").innerHTML = htmldata;
         });
     });
+
+
   </script>
 </html>
